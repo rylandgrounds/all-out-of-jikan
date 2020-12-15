@@ -6,7 +6,7 @@ import { useAuth } from "../contexts/AuthContext";
 export default function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { signup, currentUser } = useAuth();
+  const { login, currentUser } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   async function handleSubmit(e) {
@@ -15,16 +15,15 @@ export default function Login() {
     try {
       setError("");
       setLoading(true);
-      await signup(emailRef.current.value, passwordRef.current.value);
+      await login(emailRef.current.value, passwordRef.current.value);
     } catch {
-      setError("Failed to create an account");
+      setError("Failed to login");
     }
     setLoading(false);
   }
   return (
     <>
       <Card>
-          
         <Card.Body>
           {error && <Alert variant="danger"> {error} </Alert>}
           <h2 className="text-center mb-4">Log In</h2>
@@ -37,7 +36,6 @@ export default function Login() {
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" required ref={passwordRef} />
             </Form.Group>
-
             <Button disabled={loading} className="w-100" type="submit">
               Log In
             </Button>
@@ -45,7 +43,7 @@ export default function Login() {
         </Card.Body>
       </Card>
       <div className="w-100 text-center mt-2">
-        Don't have an account? Sign Up! <Link to="/sign">Sign Up</Link>
+        Don't have an account? <Link to="/signup">Sign Up</Link>
       </div>
     </>
   );

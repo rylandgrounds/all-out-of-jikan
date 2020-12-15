@@ -18,13 +18,13 @@ function App() {
             <Switch>
               <Route exact path="/" component={Dashboard} />
               <Route path="/signup" component={Signup} />
-              <Route path="/login" component={Login}/>
+              <Route path="/login" component={Login} />
             </Switch>
           </AuthProvider>
         </Router>
       </div>
     </Container>
-  );
+  )
 }
 
 export default App;
